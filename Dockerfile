@@ -5,7 +5,8 @@ ARG BASE_PATH=""
 
 WORKDIR /build
 COPY web/package.json .
-RUN bun install
+COPY web/bun.lock .
+RUN bun install --frozen-lockfile
 COPY ./web .
 COPY ./VERSION .
 RUN DISABLE_ESLINT_PLUGIN='true' VITE_REACT_APP_VERSION=$(cat VERSION) VITE_BASE_PATH=${BASE_PATH} bun run build
