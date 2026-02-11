@@ -5,7 +5,6 @@ ARG BASE_PATH=""
 
 WORKDIR /build
 COPY web/package.json .
-COPY web/bun.lock .
 RUN bun install
 COPY ./web .
 COPY ./VERSION .
